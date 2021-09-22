@@ -1,0 +1,35 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: String!
+  name: String!
+  email: String!
+}
+
+type Tweet {
+  id: String!
+  content: String!
+  userId: String!
+  User: User!
+}
+
+type Query {
+  findAllUser: [User!]!
+}
+
+type Mutation {
+  create(createTweetInput: CreateTweetInput!): Tweet!
+  createUser(createUserInput: CreateUserInput!): User!
+}
+
+input CreateTweetInput {
+  content: String!
+  userId: String!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+}

@@ -1,0 +1,24 @@
+type Tweet {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input CreateTweetInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateTweetInput {
+  id: Int!
+}
+
+type Query {
+  tweet: [Tweet]!
+  tweet(id: Int!): Tweet
+}
+
+type Mutation {
+  createTweet(createTweetInput: CreateTweetInput!): Tweet!
+  updateTweet(updateTweetInput: UpdateTweetInput!): Tweet!
+  removeTweet(id: Int!): Tweet
+}
