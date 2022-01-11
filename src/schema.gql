@@ -1,0 +1,100 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Tweet {
+  id: String!
+  content: String!
+  userId: String!
+  user: User!
+  User: User!
+}
+
+type User {
+  userId: String!
+  name: String!
+  email: String!
+  salt: String!
+  password: String!
+  Tweets: [Tweet!]!
+  followers: [UserFollower!]!
+}
+
+type UserFollower {
+  id: String!
+  followeeId: String!
+  followerId: String!
+  Followers: User!
+}
+
+type UserFollowing {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Query {
+  findAll: [User!]!
+  FindOneUserbyEmail(input: String!): User!
+  findAllTweets: [Tweet!]!
+  tweet(id: Int!): Tweet!
+  userFollower(id: Int!): UserFollower!
+  userFollowing(id: Int!): UserFollowing!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  Login(AuthoDto: AuthoDto!): String!
+  createTweet(createTweetInput: CreateTweetInput!): Tweet!
+  updateTweet(updateTweetInput: UpdateTweetInput!): Tweet!
+  removeTweet(id: Int!): Tweet!
+  createUserFollower(createUserFollowerInput: CreateUserFollowerInput!): UserFollower!
+  updateUserFollower(updateUserFollowerInput: UpdateUserFollowerInput!): UserFollower!
+  removeUserFollower(id: Int!): UserFollower!
+  createUserFollowing(Input: CreateUserFollowingInput!): UserFollowing!
+  updateUserFollowing(updateUserFollowingInput: UpdateUserFollowingInput!): UserFollowing!
+  removeUserFollowing(id: Int!): UserFollowing!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input AuthoDto {
+  email: String!
+  password: String!
+}
+
+input CreateTweetInput {
+  userId: String!
+  content: String!
+}
+
+input UpdateTweetInput {
+  userId: String
+  content: String
+  id: Int!
+}
+
+input CreateUserFollowerInput {
+  followeeId: String!
+  followerId: String!
+}
+
+input UpdateUserFollowerInput {
+  followeeId: String
+  followerId: String
+  id: Int!
+}
+
+input CreateUserFollowingInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateUserFollowingInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
