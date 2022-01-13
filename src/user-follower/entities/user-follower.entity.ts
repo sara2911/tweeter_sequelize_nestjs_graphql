@@ -23,13 +23,12 @@ export class UserFollower extends Model<UserFollower> {
   
      @Field(()=>String)
     @ForeignKey(() => User)
-     @Column({ type: DataType.UUID,defaultValue: DataType.UUIDV4,allowNull: false,unique: true})
+     @Column({ type: DataType.UUID,defaultValue: DataType.UUIDV4,allowNull: false})
        followerId:string;
 
        @Field(()=>User)
-      @BelongsTo(()=>User,{as:"userId"})
-      Followers: User;
-
+      @BelongsTo(()=>User,{as:"userId"}) ahmed:User;
+      
       // @BelongsTo(() => User,{as:"userId"})
       // @Field(()=>User)
       // userInfo: User;

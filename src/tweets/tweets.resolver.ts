@@ -20,7 +20,7 @@ export class TweetsResolver {
   }
 
   @Query(() => Tweet, { name: 'tweet' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: String) {
     return this.tweetsService.findOne(id);
   }
 

@@ -37,6 +37,9 @@ export class UserFollowerService {
   findAll() {
     return `This action returns all userFollower`;
   }
+  // async Getfollowing(followerId:string,followeeId:string){
+  // return await  this.userService
+  // }
 
   findOne(id: number) {
     return `This action returns a #${id} userFollower`;

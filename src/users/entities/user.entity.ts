@@ -53,7 +53,7 @@ Tweets:Tweet[];
 
 @HasMany(() =>UserFollower)
 @Field(()=>[UserFollower])
- followers:UserFollower[]
+ followers:UserFollower[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

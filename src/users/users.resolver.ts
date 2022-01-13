@@ -1,3 +1,5 @@
+import { fillterUser } from './../fillter/fillterUser';
+import { Fillter } from './../fillter/fillterTweets';
 import { TweetsService } from './../tweets/tweets.service';
 import { AuthoDto } from './dto/AuthoDto';
 import { User } from './entities/user.entity';
@@ -42,8 +44,9 @@ export class UsersResolver {
 
   @Query(returns=>[User])
   @UseGuards(new AuthGuard())
-  async findAll(@Context('user') User :User):Promise<User[]> {
-    return this.usersService.findAll();
+  async findAll
+  (@Context('user') User :User,@Args('fillterInput') fillter?:fillterUser):Promise<User[]> {
+    return this.usersService.findAll(fillter.limit,fillter.offsit);
   }
 
 @Query(returns=>User)

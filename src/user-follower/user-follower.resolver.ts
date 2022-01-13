@@ -26,6 +26,13 @@ export class UserFollowerResolver {
     return await this.userFollowerService.GetUser(UserFollower.followerId);
   }
 
+//   @ResolveField(() => [User])
+//   async Following(@Parent() UserFollower: UserFollower): Promise<User> {
+// console.log(UserFollower.followerId,"id")
+
+// return await this.userFollowerService.Getfollowing(UserFollower.followerId,UserFollower.followeeId);
+// }
+
   @Query(() => UserFollower, { name: 'userFollower' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.userFollowerService.findOne(id);

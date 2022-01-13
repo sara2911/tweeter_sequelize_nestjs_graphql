@@ -33,11 +33,9 @@ export class UsersService {
     });
   }
 
-  findAll():Promise<User[]> {
-    return this.userRepository.findAll<User>({include:[Tweet,UserFollower]});
-    ({include:[Tweet,UserFollower]})
-                                            //  include:[UserFollower]})
-      // {relations:["tweets"]});
+  findAll(limite?:number,offset?:number):Promise<User[]> {
+    return this.userRepository.findAll<User>({include:[Tweet,UserFollower],limit:limite,offset:offset});
+   
   }
 
  async findOneUserById(id: string):Promise<User> {

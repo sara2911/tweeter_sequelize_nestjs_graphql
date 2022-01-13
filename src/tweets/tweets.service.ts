@@ -41,8 +41,8 @@ export class TweetsService {
     return this.TweetRepository.findAll({include:[User]});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} tweet`;
+  findOne(id: String) {
+    return this.TweetRepository.findAll({order:['createdAt','ASC']});
   }
 
   update(id: number, updateTweetInput: UpdateTweetInput) {

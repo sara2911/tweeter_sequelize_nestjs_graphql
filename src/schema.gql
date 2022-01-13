@@ -17,28 +17,28 @@ type User {
   salt: String!
   password: String!
   Tweets: [Tweet!]!
-  followers: [UserFollower!]!
+  data: [UserFollower!]!
 }
 
 type UserFollower {
   id: String!
   followeeId: String!
   followerId: String!
-  Followers: User!
-}
-
-type UserFollowing {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  ahmed: User!
+  Followers: [User!]!
 }
 
 type Query {
-  findAll: [User!]!
+  findAll(fillterInput: fillterUser!): [User!]!
   FindOneUserbyEmail(input: String!): User!
   findAllTweets: [Tweet!]!
-  tweet(id: Int!): Tweet!
+  tweet(id: String!): Tweet!
   userFollower(id: Int!): UserFollower!
-  userFollowing(id: Int!): UserFollowing!
+}
+
+input fillterUser {
+  limit: Float!
+  offsit: Float!
 }
 
 type Mutation {
@@ -50,9 +50,6 @@ type Mutation {
   createUserFollower(createUserFollowerInput: CreateUserFollowerInput!): UserFollower!
   updateUserFollower(updateUserFollowerInput: UpdateUserFollowerInput!): UserFollower!
   removeUserFollower(id: Int!): UserFollower!
-  createUserFollowing(Input: CreateUserFollowingInput!): UserFollowing!
-  updateUserFollowing(updateUserFollowingInput: UpdateUserFollowingInput!): UserFollowing!
-  removeUserFollowing(id: Int!): UserFollowing!
 }
 
 input CreateUserInput {
@@ -85,16 +82,5 @@ input CreateUserFollowerInput {
 input UpdateUserFollowerInput {
   followeeId: String
   followerId: String
-  id: Int!
-}
-
-input CreateUserFollowingInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateUserFollowingInput {
-  """Example field (placeholder)"""
-  exampleField: Int
   id: Int!
 }
