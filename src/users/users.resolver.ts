@@ -45,7 +45,7 @@ export class UsersResolver {
   @Query(returns=>[User])
   @UseGuards(new AuthGuard())
   async findAll
-  (@Context('user') User :User,@Args('fillterInput') fillter?:fillterUser):Promise<User[]> {
+  (@Context('user') User :User,@Args('fillterInput')! fillter :fillterUser ):Promise<User[]> {
     return this.usersService.findAll(fillter.limit,fillter.offsit);
   }
 

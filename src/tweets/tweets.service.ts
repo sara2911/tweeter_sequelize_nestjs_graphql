@@ -14,11 +14,12 @@ export class TweetsService {
 
 
   ){}
-  create(createTweetInput: CreateTweetInput) {
+  create(createTweetInput: CreateTweetInput):Promise<Tweet> {
+    console.log(createTweetInput);
  let newTweet= new Tweet();
  let dataSaved:any;
- newTweet.content=createTweetInput.content;
- newTweet.userId=createTweetInput.userId;
+ newTweet.content = createTweetInput.content;
+ newTweet.userId = createTweetInput.userId;
  return newTweet.save()
  .then((data) => {
   dataSaved = data;
@@ -38,7 +39,7 @@ export class TweetsService {
 //     return await this.TweetRepository.findAll({where:{userId:UserId}})
 //   }
   findAll() {
-    return this.TweetRepository.findAll({include:[User]});
+    return this.TweetRepository.findAll({include:[User],order:[['createdAt','ASC' ]]});
   }
 
   findOne(id: String) {

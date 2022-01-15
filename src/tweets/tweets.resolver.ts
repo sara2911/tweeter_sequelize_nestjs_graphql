@@ -8,9 +8,9 @@ import { User } from 'src/users/entities/user.entity';
 @Resolver(() => Tweet)
 export class TweetsResolver {
   constructor(private readonly tweetsService: TweetsService) {}
-
+  // @Context('user')
   @Mutation(() => Tweet)
-  createTweet(@Context('user')@Args('createTweetInput') createTweetInput: CreateTweetInput) {
+  createTweet(  @Args('createTweetInput') createTweetInput: CreateTweetInput) {
     return this.tweetsService.create(createTweetInput);
   }
 

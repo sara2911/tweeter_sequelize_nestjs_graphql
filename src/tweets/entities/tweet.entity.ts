@@ -13,8 +13,9 @@ export class Tweet extends Model<Tweet> {
       primaryKey: true,
   })
   id:String;
-  
-  @Field()
+
+
+  @Field(()=>String)
   @Column({type: DataType.STRING})
     content:string;
 
@@ -32,5 +33,8 @@ export class Tweet extends Model<Tweet> {
 
 // @HasOne(()=>User,{foreignKey:'userId',constraints: false})
 // user:User;
+@Column
+@Field()
+  createdAt:Date;
  
 }

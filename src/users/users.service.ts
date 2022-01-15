@@ -39,7 +39,7 @@ export class UsersService {
   }
 
  async findOneUserById(id: string):Promise<User> {
-    return await this.userRepository.findOne<User>({where:{userId:id},include:[Tweet,UserFollower]})
+    return await this.userRepository.findOne<User>({where:{userId:id},include:[Tweet,UserFollower],order:[['Tweets','createdAt','ASC' ]]})
       ;
     }
 

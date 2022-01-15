@@ -7,8 +7,14 @@ type Tweet {
   content: String!
   userId: String!
   user: User!
+  createdAt: DateTime!
   User: User!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type User {
   userId: String!
@@ -17,7 +23,7 @@ type User {
   salt: String!
   password: String!
   Tweets: [Tweet!]!
-  data: [UserFollower!]!
+  followers: [UserFollower!]!
 }
 
 type UserFollower {
