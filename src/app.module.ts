@@ -6,6 +6,8 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { UserFollowerModule } from './user-follower/user-follower.module';
 import { TweetsModule } from './tweets/tweets.module';
+// import { PaginateModule } from 'nestjs-sequelize-paginate';
+
 
 @Module({
   imports: [
@@ -19,6 +21,9 @@ import { TweetsModule } from './tweets/tweets.module';
      
     }),
     UserFollowerModule,
+  //   PaginateModule.forRoot({
+  //     url: 'http://localhost:3000/graphql',
+  //  }),
     ],
   controllers: [AppController],
   providers: [AppService],

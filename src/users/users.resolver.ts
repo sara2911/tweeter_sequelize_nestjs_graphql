@@ -16,9 +16,15 @@ export class UsersResolver {
   constructor(private readonly usersService: UsersService,
     private readonly TweetsService:TweetsService) {}
 
-  @Mutation(returns=>User)
-  createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
-    return this.usersService.createUser(createUserInput);
+  @Mutation(() => User)
+ async createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
+  let  userFound= await this.usersService.findOneByEmail(createUserInput.email)
+  if(!userFound){
+        return this.usersService.createUser(createUserInput);
+
+  }
+  else     throw "this email existing"
+
   }
 
   // @Mutation(returns=>User)
@@ -45,7 +51,7 @@ export class UsersResolver {
   @Query(returns=>[User])
   @UseGuards(new AuthGuard())
   async findAll
-  (@Context('user') User :User,@Args('fillterInput')! fillter :fillterUser ):Promise<User[]> {
+  (@Context('user') User :User,@Args('fillterInput') fillter :fillterUser  ):Promise<User[]> {
     return this.usersService.findAll(fillter.limit,fillter.offsit);
   }
 

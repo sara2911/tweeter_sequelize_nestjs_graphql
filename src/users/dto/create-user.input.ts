@@ -1,5 +1,8 @@
+
+
 import { Field, InputType } from '@nestjs/graphql';
-import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
+import { IsEmail, IsString, MaxLength, MinLength, ValidationArguments,  } from 'class-validator';
+
 @InputType()
 export class CreateUserInput {
     
@@ -9,11 +12,15 @@ export class CreateUserInput {
     @Field()
     @IsEmail()
     email:string;
-    // @Field()
-    // gender: string;
+   
     @Field()
-    @MinLength(10, {
-        message: 'Title is too short',})
+    @MinLength(4,{message: (args: ValidationArguments) => {
+        if (args.value.length === 1) {
+          return 'Too short, minimum length is 1 character';
+        } else {
+          return 'Too short, minimum length is ' + args.constraints[0] + ' characters';
+        }
+    }})
     password:string;
 
 }

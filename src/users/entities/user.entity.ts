@@ -27,13 +27,7 @@ export class User extends Model<User>{
   })
   email: string;
 
-  // @Field()
-  // @Column({
-  //     type: DataType.ENUM,
-  //     values: ['male', 'female'],
-  //     allowNull: false,
-  // })
-  // gender: string;
+  
   @Field()
   @Column(DataType.STRING)
   salt: string;

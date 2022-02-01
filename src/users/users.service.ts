@@ -7,17 +7,19 @@ import * as jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcrypt';
 import { AuthoDto } from './dto/AuthoDto';
 import { Tweet } from 'src/tweets/entities/tweet.entity';
+// import { PaginateService, PaginateOptions } from 'nestjs-sequelize-paginate';
+
 
 @Injectable()
 export class UsersService {
   constructor(
     @Inject('USER_REPOSITORY')
     private readonly userRepository:typeof User,
+    // private paginateService: PaginateService
   ) {}
  async createUser(createUserInput: CreateUserInput):Promise<User>  {
     let newUser=new User();
     let dataSaved: any;
-    // newUser.gender=createUserInput.gender;
       newUser.name=createUserInput.name;
       newUser.email=createUserInput.email;
       newUser.salt= await bcrypt.genSalt();
@@ -37,6 +39,7 @@ export class UsersService {
     return this.userRepository.findAll<User>({include:[Tweet,UserFollower],limit:limite,offset:offset});
    
   }
+  // findUserPaging(){};
 
  async findOneUserById(id: string):Promise<User> {
     return await this.userRepository.findOne<User>({where:{userId:id},include:[Tweet,UserFollower],order:[['Tweets','createdAt','ASC' ]]})
@@ -71,7 +74,6 @@ async  findOneByEmail(Email: string): Promise<User> {
 
   async createToken(email:string){
     console.log(email,"email");
-  // let  payload:{} ={email};
   const accessToken=await jwt.sign(email,'secret');
  console.log(accessToken)
   return  accessToken ;
